@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import "./style.scss";
+import Img from "../../../components/imgLazyLoad/Img";
+import ContentWrapper from "../../../components/contentWrapper/ContentWrapper";
 import { useNavigate } from "react-router-dom";
 import useFetch from "../../../hooks/useFetch";
 import { useSelector } from "react-redux";
@@ -25,8 +27,14 @@ const HeroBanner = () => {
   }, [data]);
 
   return (
-    <div className="heroBanner">
-      <div className="wrapper">
+    <div className="hero-Banner">
+      {!loading && (
+        <div className="backdrop-img">
+          <Img src={background} />
+        </div>
+      )}
+      <div className="opacity-layer"></div>
+      <ContentWrapper>
         <div className="heroBannerContent">
           <span className="title">Welcome</span>
           <span className="subtitle">
@@ -44,7 +52,7 @@ const HeroBanner = () => {
             <button>Search</button>
           </div>
         </div>
-      </div>
+      </ContentWrapper>
     </div>
   );
 };

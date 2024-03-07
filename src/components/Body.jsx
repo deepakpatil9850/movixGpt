@@ -1,14 +1,17 @@
 import Header from "./header/Header";
 import Footer from "./footer/Footer";
 import { Outlet } from "react-router-dom";
+// import ContentWrapper from "./contentWrapper/";
 
 const Body = () => {
   return (
-    <div>
-      {/* <Header /> */}
+    <>
+      <Header />
+
       <Outlet />
+
       {/* <Footer /> */}
-    </div>
+    </>
   );
 };
 
