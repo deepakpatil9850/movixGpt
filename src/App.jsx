@@ -30,7 +30,7 @@ const appRoutes = createBrowserRouter([
         element: <SearchResult />,
       },
       {
-        path: "/explore",
+        path: "/explore/:type",
         element: <Explore />,
       },
       {
