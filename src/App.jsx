@@ -51,8 +51,10 @@ function App() {
   const setApiConfig = () => {
     getDataFromApi("/configuration").then((res) => {
       const urls = {
-        backdrop_img: res?.images?.secure_base_url + "w780",
-        poster_img: res?.images?.secure_base_url + "w185",
+        backdrop_url: res?.images?.secure_base_url + "w780",
+        poster_url: res?.images?.secure_base_url + "w185",
+        big_poster_url: res?.images?.secure_base_url + "w342",
+        profile_url: res?.images?.secure_base_url + "original",
       };
       dispatch(getApiConfig(urls));
     });

@@ -15,7 +15,7 @@ import "./style.scss";
 import CircleRating from "../circleRating/CircleRating";
 import Genre from "../genre/Genre";
 
-const Carousel = ({ data, loading, urlEndPoint }) => {
+const Carousel = ({ data, loading, urlEndPoint, title }) => {
   const carouselContainer = useRef();
   const navigate = useNavigate();
   const navigation = (dir) => {
@@ -31,7 +31,7 @@ const Carousel = ({ data, loading, urlEndPoint }) => {
       behavior: "smooth",
     });
   };
-  const url = useSelector((store) => store.home.url.poster_img);
+  const url = useSelector((store) => store.home.url.poster_url);
   const skItem = () => {
     return (
       <div className="skeletonItem">
@@ -46,6 +46,7 @@ const Carousel = ({ data, loading, urlEndPoint }) => {
   return (
     <div className="carousel">
       <ContentWrapper>
+        {title && <div className="carouselTitle">{title}</div>}
         <BsFillArrowLeftCircleFill
           className="carouselLeftNav arrow"
           onClick={() => {

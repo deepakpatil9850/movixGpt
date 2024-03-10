@@ -10,7 +10,7 @@ const HeroBanner = () => {
   const [background, setBackground] = useState("");
   const [query, setQuery] = useState("");
   const navigate = useNavigate();
-  const image_base_url = useSelector((state) => state.home.url.backdrop_img);
+  const image_base_url = useSelector((state) => state.home.url.backdrop_url);
   const searchQueryHandle = (e) => {
     if (e.key === "Enter" && query.length > 0) {
       navigate(`search/${query}`);
