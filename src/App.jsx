@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import getDataFromApi from "./utils/api";
 import { useDispatch } from "react-redux";
-import { getApiConfig } from "./store/slice/homeSlice";
+import { getApiConfig, getGenres } from "./store/slice/homeSlice";
 import Body from "./components/Body";
 import Details from "./pages/details/Details";
 import SearchResult from "./pages/searchResult/SearchResult";
@@ -45,16 +45,36 @@ function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     setApiConfig();
+    getAllGenre();
   }, []);
 
   const setApiConfig = () => {
     getDataFromApi("/configuration").then((res) => {
       const urls = {
-        image_base_url: res?.images?.secure_base_url + "original",
+        backdrop_img: res?.images?.secure_base_url + "w780",
+        poster_img: res?.images?.secure_base_url + "w185",
       };
       dispatch(getApiConfig(urls));
     });
   };
+
+  const getAllGenre = async () => {
+    let promises = [];
+    let endPoints = ["tv", "movie"];
+    let allGenres = {};
+
+    endPoints.forEach((point) => {
+      promises.push(getDataFromApi(`/genre/${point}/list`));
+    });
+
+    const data = await Promise.all(promises);
+
+    data?.map(({ genres }) =>
+      genres?.map((genre) => (allGenres[genre?.id] = genre))
+    );
+    dispatch(getGenres(allGenres));
+  };
+
   return (
     <div>
       <RouterProvider router={appRoutes} />
