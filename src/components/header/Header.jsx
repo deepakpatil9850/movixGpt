@@ -55,6 +55,7 @@ const Header = () => {
   const searchQueryHandle = (e) => {
     if (e.key === "Enter" && query.length > 0) {
       navigate(`search/${query}`);
+      setShowSearch(false);
     }
   };
 

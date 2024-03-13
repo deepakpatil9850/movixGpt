@@ -44,7 +44,7 @@ const SearchResult = () => {
       }
     );
   };
-  console.log(data);
+
   return (
     <div className="searchResultsPage">
       {loading && <Spinner initial={true} />}
