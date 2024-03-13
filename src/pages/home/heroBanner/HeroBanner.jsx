@@ -6,10 +6,12 @@ import useFetch from "../../../hooks/useFetch";
 import { useSelector } from "react-redux";
 
 const HeroBanner = () => {
-  const [background, setBackground] = useState("");
+  const image_base_url = useSelector((state) => state?.home?.url?.backdrop_url);
+
   const [query, setQuery] = useState("");
   const navigate = useNavigate();
-  const image_base_url = useSelector((state) => state.home.url.backdrop_url);
+  const { data, loading } = useFetch("/movie/upcoming");
+
   const searchQueryHandle = (e) => {
     if (e.key === "Enter" && query.length > 0) {
       navigate(`/search/${query}`);
@@ -20,20 +22,21 @@ const HeroBanner = () => {
       navigate(`/search/${query}`);
     }
   };
-  const { data, loading } = useFetch("/movie/popular");
 
-  useEffect(() => {
-    const bg =
-      image_base_url +
-      data?.results[Math.floor(Math.random() * 20)]?.backdrop_path;
-    setBackground(bg);
-  }, [data]);
+  useEffect(() => {}, [data]);
 
   return (
     <div className="hero-Banner">
       {!loading && (
         <div className="backdrop-img">
-          <img src={background} />
+          <img
+            src={
+              data?.results?.length > 0
+                ? image_base_url +
+                  data?.results?.[Math.floor(Math.random() * 20)]?.backdrop_path
+                : " "
+            }
+          />
         </div>
       )}
       <div className="opacity-layer"></div>
