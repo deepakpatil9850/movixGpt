@@ -46,12 +46,12 @@ const DetailsBanner = ({ video, crew }) => {
                 <div className="content">
                   <div className="left">
                     {data?.poster_path ? (
-                      <Img
+                      <img
                         className="posterImg"
                         src={URL?.big_poster_url + data?.poster_path}
                       />
                     ) : (
-                      <Img className="posterImg" src={PosterFallback} />
+                      <img className="posterImg" src={PosterFallback} />
                     )}
                   </div>
                   <div className="right">
