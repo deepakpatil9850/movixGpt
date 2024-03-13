@@ -20,7 +20,9 @@ const Details = () => {
   return (
     <div>
       <DetailsBanner
-        video={trailerVideo.length > 0 ? trailerVideo?.[0] : data?.results?.[0]}
+        video={
+          trailerVideo?.length > 0 ? trailerVideo?.[0] : data?.results?.[0]
+        }
         crew={credits?.crew}
       />
       <Cast data={credits?.cast} loading={creditsLoading} />
