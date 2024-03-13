@@ -16,7 +16,7 @@ const Details = () => {
   const trailerVideo = data?.results?.filter(
     (video) => video.name === "Official Trailer" || video.type === "Trailer"
   );
-  console.log(trailerVideo);
+
   return (
     <div>
       <DetailsBanner
