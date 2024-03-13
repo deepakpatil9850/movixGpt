@@ -1,27 +1,13 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import "./style.scss";
 import ContentWrapper from "../../../components/contentWrapper/ContentWrapper";
-import { useNavigate } from "react-router-dom";
 import useFetch from "../../../hooks/useFetch";
 import { useSelector } from "react-redux";
+import SearchBar from "./SearchBar";
 
 const HeroBanner = () => {
   const image_base_url = useSelector((state) => state?.home?.url?.backdrop_url);
-
-  const [query, setQuery] = useState("");
-  const navigate = useNavigate();
   const { data, loading } = useFetch("/movie/upcoming");
-
-  const searchQueryHandle = (e) => {
-    if (e.key === "Enter" && query.length > 0) {
-      navigate(`/search/${query}`);
-    }
-  };
-  const searchButtonHandle = () => {
-    if (query.length > 1) {
-      navigate(`/search/${query}`);
-    }
-  };
 
   useEffect(() => {}, [data]);
 
@@ -46,23 +32,8 @@ const HeroBanner = () => {
           <span className="subtitle">
             Millions of movies, TV Show and people to discover. Explore now.
           </span>
-          <div className="searchInput">
-            <input
-              type="text"
-              placeholder="Search for movies and TV shows"
-              onKeyUp={searchQueryHandle}
-              onChange={(e) => {
-                setQuery(e.target.value);
-              }}
-            />
-            <button
-              onClick={() => {
-                searchButtonHandle();
-              }}
-            >
-              Search
-            </button>
-          </div>
+          {/* search bar */}
+          <SearchBar />
         </div>
       </ContentWrapper>
     </div>
