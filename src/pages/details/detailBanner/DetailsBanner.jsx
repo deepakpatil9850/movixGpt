@@ -83,14 +83,14 @@ const DetailsBanner = ({ video, crew }) => {
                       {data?.status && (
                         <div className="infoItem">
                           <span className="text bold"> Status </span>
-                          <span className="text">{data.status}</span>
+                          <span className="text">{data?.status}</span>
                         </div>
                       )}
                       {data?.release_date && (
                         <div className="infoItem">
                           <span className="text bold"> Release Data: </span>
                           <span className="text">
-                            {dayjs(data.release_date).format("MMM D,YYYY")}
+                            {dayjs(data?.release_date).format("MMM D,YYYY")}
                           </span>
                         </div>
                       )}
@@ -107,10 +107,10 @@ const DetailsBanner = ({ video, crew }) => {
                       <div className="info">
                         <span className="text bold"> Director: </span>
                         <span className="text">
-                          {director.map((d, i) => (
+                          {director?.map((d, i) => (
                             <span key={i}>
                               {d.name}
-                              {director.length - 1 !== i && ",  "}
+                              {director?.length - 1 !== i && ",  "}
                             </span>
                           ))}
                         </span>
@@ -120,10 +120,10 @@ const DetailsBanner = ({ video, crew }) => {
                       <div className="info">
                         <span className="text bold"> Writer: </span>
                         <span className="text">
-                          {writer.map((w, i) => (
+                          {writer?.map((w, i) => (
                             <span key={i}>
                               {w.name}
-                              {writer.length - 1 !== i && ",  "}
+                              {writer?.length - 1 !== i && ",  "}
                             </span>
                           ))}
                         </span>
@@ -133,7 +133,7 @@ const DetailsBanner = ({ video, crew }) => {
                       <div className="info">
                         <span className="text bold"> Creator: </span>
                         <span className="text">
-                          {writer.map((w, i) => (
+                          {writer?.map((w, i) => (
                             <span key={i}>
                               {w.name}
                               {data?.created_by?.length - 1 !== i && ",  "}

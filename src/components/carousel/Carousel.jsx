@@ -15,7 +15,7 @@ import "./style.scss";
 import CircleRating from "../circleRating/CircleRating";
 import Genre from "../genre/Genre";
 
-const Carousel = ({ data, loading, urlEndPoint, title }) => {
+const Carousel = ({ data, loading, endpoint, title }) => {
   const carouselContainer = useRef();
   const navigate = useNavigate();
   const navigation = (dir) => {
@@ -70,12 +70,12 @@ const Carousel = ({ data, loading, urlEndPoint, title }) => {
                   className="carouselItem"
                   key={item?.id}
                   onClick={() =>
-                    navigate(`/${item.media_type || urlEndPoint}/${item.id}`)
+                    navigate(`/${item?.media_type || endpoint}/${item.id}`)
                   }
                 >
                   <div className="posterBlock">
                     <Img src={posterUrl} />
-                    <CircleRating rating={item.vote_average.toFixed(1)} />
+                    <CircleRating rating={item?.vote_average.toFixed(1)} />
                     <Genre data={item?.genre_ids.slice(0, 2)} />
                   </div>
                   <div className="textBlock">

@@ -13,10 +13,14 @@ const HeroBanner = () => {
   const image_base_url = useSelector((state) => state.home.url.backdrop_url);
   const searchQueryHandle = (e) => {
     if (e.key === "Enter" && query.length > 0) {
-      navigate(`search/${query}`);
+      navigate(`/search/${query}`);
     }
   };
-
+  const searchButtonHandle = () => {
+    if (query.length > 1) {
+      navigate(`/search/${query}`);
+    }
+  };
   const { data, loading } = useFetch("/movie/popular");
 
   useEffect(() => {
@@ -49,7 +53,13 @@ const HeroBanner = () => {
                 setQuery(e.target.value);
               }}
             />
-            <button>Search</button>
+            <button
+              onClick={() => {
+                searchButtonHandle();
+              }}
+            >
+              Search
+            </button>
           </div>
         </div>
       </ContentWrapper>

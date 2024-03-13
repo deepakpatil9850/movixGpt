@@ -13,9 +13,16 @@ const Details = () => {
   const { data: credits, loading: creditsLoading } = useFetch(
     `/${mediaType}/${id}/credits`
   );
+  const trailerVideo = data?.results?.filter(
+    (video) => video.name === "Official Trailer" || video.type === "Trailer"
+  );
+  console.log(trailerVideo);
   return (
     <div>
-      <DetailsBanner video={data?.results?.[0]} crew={credits?.crew} />
+      <DetailsBanner
+        video={trailerVideo.length > 0 ? trailerVideo?.[0] : data?.results?.[0]}
+        crew={credits?.crew}
+      />
       <Cast data={credits?.cast} loading={creditsLoading} />
       <VideosSection data={data} loading={loading} />
       <Similar mediaType={mediaType} id={id} />
